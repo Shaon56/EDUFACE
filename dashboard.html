@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - EDUFACE</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body class="dashboard-page" data-page-load="true">
+    <!-- Mobile Navigation Toggle -->
+    <button class="mobile-nav-toggle" aria-label="Toggle menu" id="mobile-nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Modern Sidebar with Glassmorphism -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <div class="logo-badge">E</div>
+                <h1 class="logo-text">EDUFACE</h1>
+            </div>
+            <button class="sidebar-close" id="sidebar-close" aria-label="Close sidebar">×</button>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <h3 class="nav-section-label">Main</h3>
+                <ul class="nav-menu">
+                    <li>
+                        <a href="#" class="nav-item active" data-page="home">
+                            <span class="nav-icon">📊</span>
+                            <span class="nav-label">Dashboard</span>
+                            <span class="nav-dot"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-item" data-page="profile">
+                            <span class="nav-icon">👤</span>
+                            <span class="nav-label">Profile</span>
+                            <span class="nav-dot"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-item" data-page="routine">
+                            <span class="nav-icon">📅</span>
+                            <span class="nav-label">Routine</span>
+                            <span class="nav-dot"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-item" data-page="attendance">
+                            <span class="nav-icon">✓</span>
+                            <span class="nav-label">Attendance</span>
+                            <span class="nav-dot"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-item" data-page="results">
+                            <span class="nav-icon">📈</span>
+                            <span class="nav-label">Results</span>
+                            <span class="nav-dot"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Admin Section -->
+            <div class="nav-section admin-nav-section" id="admin-nav-section" style="display: none;">
+                <h3 class="nav-section-label">Administration</h3>
+                <ul class="nav-menu">
+                    <li>
+                        <a href="#" class="nav-item" data-page="admin-users">
+                            <span class="nav-icon">👥</span>
+                            <span class="nav-label">Users</span>
+                            <span class="nav-dot"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-item" data-page="admin-routine">
+                            <span class="nav-icon">⚙️</span>
+                            <span class="nav-label">Manage Routine</span>
+                            <span class="nav-dot"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-item" data-page="admin-attendance">
+                            <span class="nav-icon">📋</span>
+                            <span class="nav-label">Attendance Control</span>
+                            <span class="nav-dot"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <div class="user-card">
+                <div class="user-avatar" id="user-avatar">A</div>
+                <div class="user-details">
+                    <p class="user-name" id="sidebar-user-name">User</p>
+                    <p class="user-role" id="sidebar-user-role">Student</p>
+                </div>
+            </div>
+            <button class="logout-btn" onclick="handleLogout()">
+                <span>←</span> Logout
+            </button>
+        </div>
+    </aside>
+
+    <!-- Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-content">
+                <h1 class="page-title" id="page-title">Dashboard</h1>
+                <div class="header-actions">
+                    <div class="time-display" id="time-display">Just now</div>
+                    <button class="header-menu-btn" id="header-menu-btn" aria-label="Menu">⋮</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Pages Container -->
+        <div class="pages-container" id="pages-container">
+            <!-- Home Page -->
+            <div id="home-page" class="page active" data-page="home">
+                <!-- Welcome Card -->
+                <div class="welcome-card" id="welcome-card">
+                    <div class="welcome-content">
+                        <h2>Welcome back! 👋</h2>
+                        <p id="welcome-message">Monday, 4 January 2026</p>
+                    </div>
+                    <div class="welcome-icon">📚</div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card" data-stat="subjects">
+                        <div class="stat-icon-bg">📚</div>
+                        <div class="stat-body">
+                            <p class="stat-label">Subjects</p>
+                            <p class="stat-value" id="total-subjects">4</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card" data-stat="attendance">
+                        <div class="stat-icon-bg">✓</div>
+                        <div class="stat-body">
+                            <p class="stat-label">Attendance</p>
+                            <p class="stat-value" id="attendance-rate">--</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card" data-stat="grade">
+                        <div class="stat-icon-bg">📊</div>
+                        <div class="stat-body">
+                            <p class="stat-label">Avg Grade</p>
+                            <p class="stat-value" id="avg-grade">--</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card" data-stat="classes">
+                        <div class="stat-icon-bg">📅</div>
+                        <div class="stat-body">
+                            <p class="stat-label">Today's Classes</p>
+                            <p class="stat-value" id="classes-today">--</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity Section -->
+                <section class="content-section">
+                    <div class="section-header">
+                        <h3>Recent Attendance</h3>
+                        <a href="#" class="view-all-link" data-page="attendance">View All →</a>
+                    </div>
+                    <div class="attendance-list">
+                        <div id="recent-attendance">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Profile Page -->
+            <div id="profile-page" class="page" data-page="profile">
+                <div class="page-header">
+                    <h2>User Profile</h2>
+                    <p class="page-subtitle">View and manage your personal information</p>
+                </div>
+
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar" id="profile-avatar">A</div>
+                        <div class="profile-info">
+                            <h3 id="profile-display-name">User Name</h3>
+                            <p id="profile-display-id">Student ID: --</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-divider"></div>
+
+                    <div class="profile-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="profile-name" readonly class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Student ID</label>
+                                <input type="text" id="profile-student-id" readonly class="form-input">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="profile-email" readonly class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Contact Number</label>
+                                <input type="tel" id="profile-contact" readonly class="form-input">
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Parent Email</label>
+                            <input type="email" id="profile-parent-email" readonly class="form-input">
+                        </div>
+                    </div>
+
+                    <div id="admin-edit-section" style="display: none;">
+                        <div class="profile-divider"></div>
+                        <div class="form-actions">
+                            <button class="btn-edit" id="edit-profile-btn" onclick="enableProfileEdit()">Edit Profile</button>
+                            <button class="btn-save" id="save-profile-btn" style="display: none;" onclick="saveProfileChanges()">Save Changes</button>
+                            <button class="btn-cancel" id="cancel-profile-btn" style="display: none;" onclick="disableProfileEdit()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Routine Page -->
+            <div id="routine-page" class="page" data-page="routine">
+                <div class="page-header">
+                    <h2>Weekly Routine</h2>
+                    <p class="page-subtitle">View your class schedule</p>
+                </div>
+
+                <div class="day-selector-modern">
+                    <button class="day-btn active" data-day="Monday">Mon</button>
+                    <button class="day-btn" data-day="Tuesday">Tue</button>
+                    <button class="day-btn" data-day="Wednesday">Wed</button>
+                    <button class="day-btn" data-day="Thursday">Thu</button>
+                    <button class="day-btn" data-day="Friday">Fri</button>
+                    <button class="day-btn" data-day="Saturday">Sat</button>
+                </div>
+
+                <div class="routine-grid" id="routine-cards">
+                    <!-- Populated by JavaScript -->
+                </div>
+
+                <div id="admin-routine-section" style="display: none;">
+                    <button class="btn-primary" onclick="openRoutineModal()">+ Add Routine</button>
+                </div>
+            </div>
+
+            <!-- Attendance Page -->
+            <div id="attendance-page" class="page" data-page="attendance">
+                <div class="page-header">
+                    <h2>Attendance Records</h2>
+                    <p class="page-subtitle">Your attendance by subject</p>
+                </div>
+
+                <div class="table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th class="text-right">Total</th>
+                                <th class="text-right">Present</th>
+                                <th class="text-right">Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendance-table">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Results Page -->
+            <div id="results-page" class="page" data-page="results">
+                <div class="page-header">
+                    <h2>Academic Results</h2>
+                    <p class="page-subtitle">Your grades and marks</p>
+                </div>
+
+                <div class="table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th class="text-right">Marks</th>
+                                <th class="text-right">Grade</th>
+                                <th id="admin-result-action-header" style="display: none;" class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results-table">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="admin-result-section" style="display: none; margin-top: 24px;">
+                    <button class="btn-primary" onclick="openResultsModal()">+ Upload Results</button>
+                </div>
+            </div>
+
+            <!-- Admin: User Management -->
+            <div id="admin-users-page" class="page" data-page="admin-users">
+                <div class="page-header">
+                    <h2>User Management</h2>
+                    <p class="page-subtitle">Manage student and admin accounts</p>
+                </div>
+
+                <div class="admin-toolbar">
+                    <button class="btn-primary" onclick="openUserModal()">+ Add User</button>
+                </div>
+
+                <div class="table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Student ID</th>
+                                <th>Contact</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-table">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Admin: Routine Management -->
+            <div id="admin-routine-page" class="page" data-page="admin-routine">
+                <div class="page-header">
+                    <h2>Routine Management</h2>
+                    <p class="page-subtitle">Create and manage class schedules</p>
+                </div>
+
+                <div class="admin-toolbar">
+                    <button class="btn-primary" onclick="openRoutineModal()">+ Create Routine</button>
+                </div>
+
+                <div class="table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Day</th>
+                                <th>Time</th>
+                                <th>Room</th>
+                                <th>Instructor</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="routine-table">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Admin: Attendance Control -->
+            <div id="admin-attendance-page" class="page" data-page="admin-attendance">
+                <div class="page-header">
+                    <h2>Attendance Control</h2>
+                    <p class="page-subtitle">Manage attendance records</p>
+                </div>
+
+                <div class="table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Subject</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-attendance-table">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav" id="bottom-nav">
+        <a href="#" class="bottom-nav-item active" data-page="home">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="#" class="bottom-nav-item" data-page="routine">
+            <span class="nav-icon">📅</span>
+            <span class="nav-label">Routine</span>
+        </a>
+        <a href="#" class="bottom-nav-item" data-page="attendance">
+            <span class="nav-icon">✓</span>
+            <span class="nav-label">Attendance</span>
+        </a>
+        <a href="#" class="bottom-nav-item" data-page="profile">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">Profile</span>
+        </a>
+    </nav>
+
+    <!-- Header Menu Dropdown -->
+    <div class="header-menu-dropdown" id="header-menu-dropdown" style="display: none;">
+        <a href="#" class="header-menu-item" data-page="admin-users" style="display: none;">Users</a>
+        <a href="#" class="header-menu-item" data-page="admin-routine" style="display: none;">Manage Routine</a>
+        <a href="#" class="header-menu-item" data-page="admin-attendance" style="display: none;">Attendance Control</a>
+        <button class="header-menu-item" onclick="handleLogout()">Logout</button>
+    </div>
+
+    <!-- Modal: Routine -->
+    <div id="routine-modal" class="modal" role="dialog">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content modal-content-routine">
+            <div class="modal-header">
+                <h2>Add/Edit Routine</h2>
+                <button class="modal-close" onclick="closeRoutineModal()">×</button>
+            </div>
+            <form onsubmit="handleRoutineSubmit(event)" class="modal-form">
+                <div class="form-group">
+                    <label>Subject *</label>
+                    <input type="text" id="routine-subject" required class="form-input">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Day *</label>
+                        <select id="routine-day" required class="form-input">
+                            <option>Monday</option>
+                            <option>Tuesday</option>
+                            <option>Wednesday</option>
+                            <option>Thursday</option>
+                            <option>Friday</option>
+                            <option>Saturday</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Room Number *</label>
+                        <input type="text" id="routine-room" required class="form-input">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Start Time *</label>
+                        <input type="time" id="routine-start-time" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label>End Time *</label>
+                        <input type="time" id="routine-end-time" required class="form-input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Instructor Name (Optional)</label>
+                    <input type="text" id="routine-instructor" class="form-input">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeRoutineModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Routine</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Results -->
+    <div id="results-modal" class="modal" role="dialog">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Upload/Edit Results</h2>
+                <button class="modal-close" onclick="closeResultsModal()">×</button>
+            </div>
+            <form onsubmit="handleResultsSubmit(event)" class="modal-form">
+                <div class="form-group">
+                    <label>Subject *</label>
+                    <input type="text" id="results-subject" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Student ID *</label>
+                    <input type="text" id="results-student-id" required class="form-input">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Marks *</label>
+                        <input type="number" id="results-marks" min="0" max="100" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Grade *</label>
+                        <select id="results-grade" required class="form-input">
+                            <option>A+</option>
+                            <option>A</option>
+                            <option>B+</option>
+                            <option>B</option>
+                            <option>C</option>
+                            <option>D</option>
+                            <option>F</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeResultsModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Results</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: User Management -->
+    <div id="user-modal" class="modal" role="dialog">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add User</h2>
+                <button class="modal-close" onclick="closeUserModal()">×</button>
+            </div>
+            <form onsubmit="handleUserSubmit(event)" class="modal-form">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="user-name-input" required class="form-input">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Student ID *</label>
+                        <input type="text" id="user-student-id-input" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" id="user-email-input" required class="form-input">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Parent Email *</label>
+                        <input type="email" id="user-parent-email-input" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Contact *</label>
+                        <input type="tel" id="user-contact-input" required class="form-input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Password *</label>
+                    <input type="password" id="user-password-input" required class="form-input">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeUserModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Add User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDUFACE - AI-Integrated Smart Educational Platform</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/landing.css">
+</head>
+<body class="landing-page">
+    <!-- Landing Page Container -->
+    <div class="landing-container">
+        <!-- Navigation Bar -->
+        <nav class="landing-nav">
+            <div class="nav-content">
+                <div class="nav-logo">EDUFACE</div>
+                <div class="nav-links">
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#login" class="nav-link nav-login">Login</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section with Animations -->
+        <div class="hero-section">
+            <!-- Glowing EDUFACE Logo -->
+            <div class="logo-container">
+                <h1 class="glowing-logo">EDUFACE</h1>
+                <p class="logo-subtitle">AI-Integrated Smart Educational Platform</p>
+            </div>
+
+            <!-- Floating Geometric Shapes -->
+            <div class="geometric-shapes">
+                <div class="shape square"></div>
+                <div class="shape circle"></div>
+                <div class="shape triangle"></div>
+                <div class="shape dot"></div>
+            </div>
+
+            <!-- Pulsating Middle Divider Line -->
+            <div class="divider-line"></div>
+
+            <!-- CTA Button -->
+            <div class="cta-container">
+                <button class="cta-button" onclick="scrollToLogin()">Get Started</button>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section" id="features">
+            <h2>Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Face Detection Attendance</h3>
+                    <p>Automated attendance marking using AI face recognition</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-Time Dashboard</h3>
+                    <p>Monitor academic data and attendance in real-time</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍💼</div>
+                    <h3>Role-Based Access</h3>
+                    <p>Separate admin and student dashboards with custom controls</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Fully Responsive</h3>
+                    <p>Seamless experience across all devices and screen sizes</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Container (Hidden, shown via scroll) -->
+        <div class="login-section" id="login">
+            <div class="login-container">
+                <div class="login-form-container">
+                    <div class="form-toggle">
+                        <button class="toggle-btn active" onclick="toggleForm('login-form')">Login</button>
+                        <button class="toggle-btn" onclick="toggleForm('register-form')">Register</button>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form id="login-form" class="auth-form active" onsubmit="handleLogin(event)">
+                        <h2>Login to EDUFACE</h2>
+                        <div class="form-group">
+                            <label for="login-email">Email:</label>
+                            <input type="email" id="login-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password:</label>
+                            <input type="password" id="login-password" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-role">Login as:</label>
+                            <select id="login-role" name="role" required>
+                                <option value="student">Student</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="auth-button">Login</button>
+                        <div id="login-error" class="error-message"></div>
+                    </form>
+
+                    <!-- Register Form -->
+                    <form id="register-form" class="auth-form" onsubmit="handleRegister(event)">
+                        <h2>Create Account</h2>
+                        <div class="form-group">
+                            <label for="register-name">Full Name:</label>
+                            <input type="text" id="register-name" name="full_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-student-id">Student ID:</label>
+                            <input type="text" id="register-student-id" name="student_id" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Email:</label>
+                            <input type="email" id="register-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-parent-email">Parent's Email:</label>
+                            <input type="email" id="register-parent-email" name="parent_email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-contact">Contact Number:</label>
+                            <input type="tel" id="register-contact" name="contact_number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Password:</label>
+                            <input type="password" id="register-password" name="password" required>
+                        </div>
+                        <button type="submit" class="auth-button">Register</button>
+                        <div id="register-error" class="error-message"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/landing.js"></script>
+</body>
+</html>
