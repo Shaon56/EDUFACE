@@ -738,13 +738,13 @@ async function loadRoutineAdmin() {
         container.innerHTML = '';
 
         data.forEach(routine => {
-            const subject = routine.Subject || routine.subject || 'N/A';
-            const day = routine.Day || routine.day || 'N/A';
-            const startTime = routine['Start Time'] || routine.start_time || '--';
-            const endTime = routine['End Time'] || routine.end_time || '--';
-            const room = routine.Room || routine.room || 'N/A';
-            const instructor = routine.Instructor || routine.instructor || 'TBA';
-            const id = routine.ID || routine.id || '';
+            const subject = routine.subject || routine.Subject || 'N/A';
+            const day = routine.day || routine.Day || 'N/A';
+            const startTime = routine.start_time || routine['Start Time'] || '--';
+            const endTime = routine.end_time || routine['End Time'] || '--';
+            const room = routine.room_number || routine.room || routine.Room || 'N/A';
+            const instructor = routine.instructor_name || routine.instructor || routine.Instructor || 'TBA';
+            const id = routine.id || routine.ID || '';
 
             const row = `
                 <tr>
@@ -772,12 +772,12 @@ async function handleRoutineSubmit(event) {
     try {
         const token = getAuthToken();
         const routineData = {
-            'Subject': document.getElementById('routine-subject').value,
-            'Day': document.getElementById('routine-day').value,
-            'Start Time': document.getElementById('routine-start-time').value,
-            'End Time': document.getElementById('routine-end-time').value,
-            'Room': document.getElementById('routine-room').value,
-            'Instructor': document.getElementById('routine-instructor').value
+            'subject': document.getElementById('routine-subject').value,
+            'day': document.getElementById('routine-day').value,
+            'startTime': document.getElementById('routine-start-time').value,
+            'endTime': document.getElementById('routine-end-time').value,
+            'room': document.getElementById('routine-room').value,
+            'instructor': document.getElementById('routine-instructor').value
         };
 
         const res = await fetch(`${API_BASE_URL}/routines`, {
